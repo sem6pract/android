@@ -1,0 +1,98 @@
+actmain.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@color/blue"
+    >
+
+    <TextView
+        android:layout_width="293dp"
+        android:layout_height="56dp"
+        android:text="Hello World!"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:textSize="@dimen/size"
+        android:layout_width="@dimen/width"
+        android:layout_height="@dimen/height"
+        android:text="TextView"
+        android:textColor="@color/red" />
+
+    <ImageView
+        android:layout_width="381dp"
+        android:layout_height="150dp"
+        android:src="@drawable/ss" />
+
+    <ImageView
+        android:layout_width="385dp"
+        android:layout_height="250dp"
+        android:src="@drawable/ss1" />
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ss"/>
+
+</LinearLayout>
+
+
+-------------------------------------------------------------------
+dimens.xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="height">35dp</dimen>
+    <dimen name="width">150dp</dimen>
+    <dimen name="size">20dp</dimen>
+</resources>
+
+-----------------------------------------------------------------
+colors.xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#00FF2F</color>
+    <color name="blue">#2196F3</color>
+</resources>
+
+
+----------------------------------------------------------------------
+mainact.java
+
+package com.example.p2;
+
+import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+    }
+}
