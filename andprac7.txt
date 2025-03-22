@@ -1,0 +1,84 @@
+actmainn.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <ListView
+        android:id="@+id/vv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+
+mainact.java--------------------------------------------------------------------------------
+
+package com.example.practical7;
+
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+    ListView v;
+    String[] c={"red","green","blue"};
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        v=(ListView)findViewById(R.id.vv);
+        ArrayAdapter<String>a=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,c);
+        v.setAdapter(a);
+        v.setOnItemClickListener(this);
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+        TextView tv = (TextView) view;
+        if (i == 0) {
+            tv.setBackgroundColor(Color.RED);
+        } else if (i == 1) {
+            tv.setBackgroundColor(Color.GREEN);
+        } else if (i == 2) {
+            tv.setBackgroundColor(Color.BLUE);
+        }
+    }
+
+}
+
+colors.xml---------------------------------------------------------------------------------------------------------
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
+
+
+themes.xml-----------------------------------------------------------------------------------------------------------
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Practical7" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.Practical7" parent="Base.Theme.Practical7" />
+</resources>
+
+
